@@ -31,15 +31,15 @@ const cohere = new CohereClient({
     token: process.env.COHERE_API_KEY, // Use an environment variable for the API key
 });
 
-
+// TO-DOS:
+// make the prompts more human-like
 async function classifyText(inputPrompt) {
     const classify = await cohere.classify({
         examples: [
             // Level 1 – Critical — obviously life threatening
             // Conditions requiring resuscitation, including cardiac arrest, 
             // shock and major trauma
-            { text: `
-            Full Name: John Doe
+            { text: `Full Name: John Doe
             DOB: January 15, 1980
             Gender: Male
             Address: 123 Main Street
@@ -60,8 +60,7 @@ async function classifyText(inputPrompt) {
             Pregnancy Status: Not applicable 
             `, 
             label: "Level 1" },
-            { text: `
-            Full Name: Emily Smith
+            { text: `Full Name: Emily Smith
             DOB: March 22, 1995
             Gender: Female
             Address: 456 Oak Avenue
@@ -82,8 +81,7 @@ async function classifyText(inputPrompt) {
             Pregnancy Status: Not pregnant
             `, 
             label: "Level 1" },
-            { text: `
-            Full Name: Michael Johnson
+            { text: `Full Name: Michael Johnson
             DOB: September 5, 1985
             Gender: Male
             Address: 567 Maple Lane
@@ -104,8 +102,7 @@ async function classifyText(inputPrompt) {
             Pregnancy Status: Not applicable
             `, 
             label: "Level 1" },
-            { text: `
-            Full Name: Joseph Kim
+            { text: `Full Name: Joseph Kim
             DOB: March 15, 1980
             Gender: Male
             Address: 234 Maple Street, Vancouver, BC
@@ -125,26 +122,25 @@ async function classifyText(inputPrompt) {
             Social History: Smokes 1 pack of cigarettes per day, drinks socially
             Pregnancy Status: Unknown`, 
             label: "Level 1" },
-            { text: `
-            Full Name: Joseph Kim
-            DOB: March 15, 1980
+            { text: `Full Name: Brian Turner
+            DOB: June 8, 1985
             Gender: Male
-            Address: 234 Maple Street, Vancouver, BC
-            City: Vancouver
-            State: BC
-            Zip: V5Y 2T2
-            Phone: 678-780-3091
-            Email: joseph.kim@example.com
-            Allergies: Penicillin, Sulfa Drugs
-            Current Medications: Metoprolol
+            Address: 567 Birch Avenue
+            City: Greenfield
+            State: Meadowland
+            Zip: G3M 2N1
+            Phone: (555) 123-4567
+            Email: brian.t@email.com
+            Allergies: None
+            Current Medications: None
             Past Surgical History: None
-            Chronic Conditions: Hypertension
-            Reason for Visit: Pain in upper abdomen
-            Symptoms: Nausea, vomiting, fever
-            Recent Injuries: Fall
+            Chronic Conditions: None
+            Reason for Visit: Chest pain suggestive of heart problems
+            Symptoms: Crushing chest pain, radiating to the left arm, sweating
+            Recent Injuries: None
             Recent Illnesses: None
-            Social History: Smokes 1 pack of cigarettes per day, drinks socially
-            Pregnancy Status: Unknown
+            Social History: Smoker, occasional alcohol use
+            Pregnancy Status: Not applicable
             `, 
             label: "Level 1" },
 
@@ -330,30 +326,228 @@ async function classifyText(inputPrompt) {
             Social History: Non-smoker, occasional alcohol consumption
             Pregnancy Status: Unknown`, 
             label: "Level 3" },
-            { text: ``, 
+            { text: `Full Name: Emma Turner
+            DOB: April 10, 1990
+            Gender: Female
+            Address: 567 Pine Avenue
+            City: Greenfield
+            State: Meadowland
+            Zip: G3M 2N1
+            Phone: (555) 789-0123
+            Email: emma.t@email.com
+            Allergies: None
+            Current Medications: Birth control pills
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Kidney stone
+            Symptoms: Severe flank pain, blood in urine
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not pregnant`, 
             label: "Level 3" },
 
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
+            { text: `Full Name: Dylan Adams
+            DOB: April 10, 1985
+            Gender: Male
+            Address: 567 Pine Avenue
+            City: Greenfield
+            State: Meadowland
+            Zip: G3M 2N1
+            Phone: (555) 789-0123
+            Email: dylan.a@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Mild dehydration
+            Symptoms: Excessive thirst, dark urine, dizziness
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, no alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 4" },
+            { text: `Full Name: Lauren Johnson
+            DOB: May 15, 1990
+            Gender: Female
+            Address: 234 Cedar Road
+            City: Woodsville
+            State: Valleyland
+            Zip: V1R 7K3
+            Phone: (555) 321-8765
+            Email: lauren.j@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Bladder infection
+            Symptoms: Painful urination, frequent urge to urinate
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 4" },
+            { text: `Full Name: Ethan Miller
+            DOB: November 20, 1982
+            Gender: Male
+            Address: 101 Maple Lane
+            City: Greenvale
+            State: Forestville
+            Zip: F2G 4H6
+            Phone: (555) 555-6789
+            Email: ethan.m@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Earache
+            Symptoms: Pain in the left ear
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 4" },
+            { text: `Full Name: Ashley Davis
+            DOB: September 5, 1995
+            Gender: Female
+            Address: 456 Oak Avenue
+            City: Cityville
+            State: Metropolia
+            Zip: M1N 3O9
+            Phone: (555) 987-6543
+            Email: ashley.d@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Laceration on the arm
+            Symptoms: Bleeding from a cut on the arm
+            Recent Injuries: Laceration
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 4" },
+            { text: `Full Name: Ryan Thompson
+            DOB: June 12, 1989
+            Gender: Male
+            Address: 789 Elm Street
+            City: Riverside
+            State: Lakeside
+            Zip: L4X 5Y7
+            Phone: (555) 123-4567
+            Email: ryan.t@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Vomiting and diarrhea
+            Symptoms: Nausea, vomiting, diarrhea, abdominal cramps
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 4" },
 
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
-            { text: ``, 
-            label: "Level 2" },
+            { text: `Full Name: Taylor Wilson
+            DOB: July 7, 1993
+            Gender: Non-binary
+            Address: 789 Elm Street
+            City: Riverside
+            State: Lakeside
+            Zip: L4X 5Y7
+            Phone: (555) 123-4567
+            Email: taylor.w@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: Seasonal allergies
+            Reason for Visit: Sore throat
+            Symptoms: Scratchy throat, mild discomfort
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 5" },
+            { text: `Full Name: Jordan Martinez
+            DOB: January 15, 1987
+            Gender: Male
+            Address: 456 Oak Avenue
+            City: Cityville
+            State: Metropolia
+            Zip: M1N 3O9
+            Phone: (555) 987-6543
+            Email: jordan.m@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Insect bite
+            Symptoms: Itchy, red insect bite on the arm
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, no alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 5" },
+            { text: `Full Name: Morgan Adams
+            DOB: November 20, 1980
+            Gender: Female
+            Address: 101 Maple Lane
+            City: Greenvale
+            State: Forestville
+            Zip: F2G 4H6
+            Phone: (555) 555-6789
+            Email: morgan.a@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Minor skin rash
+            Symptoms: Red, itchy rash on the forearm
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 5" },
+            { text: `Full Name: Casey Davis
+            DOB: May 15, 1995
+            Gender: Female
+            Address: 234 Cedar Road
+            City: Woodsville
+            State: Valleyland
+            Zip: V1R 7K3
+            Phone: (555) 321-8765
+            Email: casey.d@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Mild allergic reaction
+            Symptoms: Itchy eyes, sneezing
+            Recent Injuries: None
+            Recent Illnesses: None
+            Social History: Non-smoker, no alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 5" },
+            { text: `Full Name: Jamie Turner
+            DOB: April 10, 1992
+            Gender: Non-binary
+            Address: 567 Pine Avenue
+            City: Greenfield
+            State: Meadowland
+            Zip: G3M 2N1
+            Phone: (555) 789-0123
+            Email: jamie.t@email.com
+            Allergies: None
+            Current Medications: None
+            Past Surgical History: None
+            Chronic Conditions: None
+            Reason for Visit: Insect sting
+            Symptoms: Swelling and redness at the site of an insect sting
+            Recent Injuries: Insect sting
+            Recent Illnesses: None
+            Social History: Non-smoker, occasional alcohol use
+            Pregnancy Status: Not applicable`, 
+            label: "Level 5" },
         ],
         inputs: [
             inputPrompt,
